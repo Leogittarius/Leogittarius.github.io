@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>博文发布方法 | Leogittarius</title><script src="//unpkg.com/valine/dist/Valine.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css"><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.0"></head><body style="background-image:url(https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg);"><header><nav><a href="/">Home</a><a href="/archives/">Archives</a></nav></header><main><article><div id="post-bg"><div id="post-title"><h1>博文发布方法</h1><hr></div><div id="post-content"><p>博文发布相关问题，比如怎么发、发布失败问题怎么办。</p>
+<span id="more"></span>
+
+
+
+
+
+<h3 id="发布方法与’hexo-d’的问题"><a href="#发布方法与’hexo-d’的问题" class="headerlink" title="发布方法与’hexo d’的问题"></a>发布方法与’hexo d’的问题</h3><p>首先写文章，使用.md格式，markdown语法，符合标准文章模板。</p>
+<p>写完之后在\blog路径，也就是source文件夹的上一级，右键“Git Bash Here”，然后使用<code>hexo g</code>生成新的文章。使用<code>hexo s</code>上传到本地博客文件，以预览效果，最后使用<code>hexo d</code>发布即可。</p>
+<p>如果遇到<code>hexo d</code>屡屡失败的情况，大概率与互联网墙有关，在多次查询后，我发现可以使用在<code>C:\Windows\System32\drivers\etc</code>路径下的hosts文件中添加github域名的方式解决。添加的字段为<code>192.30.255.113 github.com</code></p>
+<p>我也试过很多其他的方法，但似乎只有添加域名才是根本解决方法。我也遇到过几次本地<code>hexo d</code>上传显示成功，但是打开博客之后却发现文本并没有更新，根据以往几次的经验，应该等待一会等文件同步就可以了，可能是GitHub部署到网址上需要一段时间。有的时候也可以试试玄学办法，先把\blog路径下的.deploy_git文件夹删除，然后再<code>hexo clean</code>、<code>hexo g</code>、<code>hexo d</code>三件套。</p>
+<h3 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h3><p>用<code>###</code>来表示和<code>####</code>等来表示不同级次的标题，md文件中的格式会原封不动的到网页中，比如本文中的单行换行，就会表示在网页中体现为一个空行。多行空行在网页中的显示不会超过1行，也可以使用<code>&lt;br&gt;</code>换行，<code>&lt;br&gt;</code>就可以造成多行的空行了。</p>
+<p>用<code>&lt;!-- more --&gt;</code>标识来隔开预览部分和正文，预览部分建议写，如果不写也可以。</p>
+<p>对于本文的md文件，其文件头是如下的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">---<br>title: &#x27;博文发布方法&#x27;<br>date: 2022-03-30 00:30:30 # 日期可以随意更改<br>tags: 默认标签 # tag名称不用打引号<br>category: 备忘 # 一次只能加一个tag或者分类<br>---<br></code></pre></td></tr></table></figure>
+<p>以后发文章都要符合这样的格式。</p>
+<div id="paginator"></div></div><div id="post-footer"><hr><a href="/2022/09/05/%E4%BB%8E%E3%80%8A%E6%9D%80%E6%AD%BB%E9%82%A3%E4%B8%AA%E7%9F%B3%E5%AE%B6%E5%BA%84%E4%BA%BA%E3%80%8B%E5%88%B0%E3%80%8A%E9%87%8E%E7%8B%BCDisco%E3%80%8B/">← Prev 从《杀死那个石家庄人》到《野狼Disco》</a><span style="color: #fe2"> | </span><a href="/2022/01/19/%E5%8D%A0%E4%BD%8D%E6%96%87%E4%BB%B6/">占位文件 Next →</a><hr></div><div id="bottom-btn"><a id="to-index" href="#post-index" title="index">≡</a><a id="to-top" href="#post-title" title="to top">∧</a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a> Dr.Lee</a></h1><section id="total"><a id="total-archives" href="/archives"><span class="total-title">Archives Total:</span><span class="total-number">4</span></a><div id="total-tags"><span class="total-title">Tags:</span><span class="total-number">3</span></div><div id="total-categories"><span class="total-title">Categories:</span><span class="total-number">3</span></div></section></div><div id="aside-block"><h1>INDEX</h1><div id="post-index"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E6%96%B9%E6%B3%95%E4%B8%8E%E2%80%99hexo-d%E2%80%99%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">发布方法与’hexo d’的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Markdown%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Markdown语法</span></a></li></ol></div></div><footer><wbr><nobr>published with&nbsp;<a target="_blank" rel="noopener" href="http://hexo.io">Hexo&nbsp;</a></nobr><wbr><nobr>Theme&nbsp;<a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknight&nbsp;</a></nobr><wbr><nobr>by&nbsp;<a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/arknights.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script></body></html>
