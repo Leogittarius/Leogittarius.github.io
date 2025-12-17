@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>本次搭建博客需要记录的问题与经历，以及博客发布方法 | 叶牡丹国立图书馆</title><meta name="author" content="Lee"><meta name="copyright" content="Lee"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="包含了涉及到的概念，以及踩过的坑。前面的《来之不易的测试文档》是AI根据搭建过程生成的，非常粗糙简陋，也默认了一些前置的知识，那篇文档仅仅用于测试，本篇加入了很多细节部分，细细的捋一边，当作复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本次搭建博客需要记录的问题与经历，以及博客发布方法">
+<meta property="og:url" content="https://leogittarius.github.io/2025/12/17/%E5%85%B3%E4%BA%8E%E6%9C%AC%E6%AC%A1%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%BB%8F%E5%8E%86%EF%BC%8C%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E7%9A%84%E5%8A%9E%E6%B3%95/index.html">
+<meta property="og:site_name" content="叶牡丹国立图书馆">
+<meta property="og:description" content="包含了涉及到的概念，以及踩过的坑。前面的《来之不易的测试文档》是AI根据搭建过程生成的，非常粗糙简陋，也默认了一些前置的知识，那篇文档仅仅用于测试，本篇加入了很多细节部分，细细的捋一边，当作复习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leogittarius.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-12-17T20:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-17T22:18:50.724Z">
+<meta property="article:author" content="Lee">
+<meta property="article:tag" content="Github个人主页">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客搭建">
+<meta property="article:tag" content="排雷">
+<meta property="article:tag" content="虚拟机">
+<meta property="article:tag" content="虚拟机共享文件夹">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leogittarius.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "本次搭建博客需要记录的问题与经历，以及博客发布方法",
+  "url": "https://leogittarius.github.io/2025/12/17/%E5%85%B3%E4%BA%8E%E6%9C%AC%E6%AC%A1%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%BB%8F%E5%8E%86%EF%BC%8C%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E7%9A%84%E5%8A%9E%E6%B3%95/",
+  "image": "https://leogittarius.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-12-17T20:00:00.000Z",
+  "dateModified": "2025-12-17T22:18:50.724Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Lee",
+      "url": "https://leogittarius.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://leogittarius.github.io/2025/12/17/%E5%85%B3%E4%BA%8E%E6%9C%AC%E6%AC%A1%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%BB%8F%E5%8E%86%EF%BC%8C%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E7%9A%84%E5%8A%9E%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3-b2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '本次搭建博客需要记录的问题与经历，以及博客发布方法',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-file-text"></i><span> Resume</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">叶牡丹国立图书馆</span></a><a class="nav-page-title" href="/"><span class="site-name">本次搭建博客需要记录的问题与经历，以及博客发布方法</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-file-text"></i><span> Resume</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">本次搭建博客需要记录的问题与经历，以及博客发布方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-17T20:00:00.000Z" title="发表于 2025-12-17 21:00:00">2025-12-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-17T22:18:50.724Z" title="更新于 2025-12-17 23:18:50">2025-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E8%AE%B0%E5%BD%95/">技术记录</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>包含了涉及到的概念，以及踩过的坑。前面的《来之不易的测试文档》是AI根据搭建过程生成的，非常粗糙简陋，也默认了一些前置的知识，那篇文档仅仅用于测试，本篇加入了很多细节部分，细细的捋一边，当作复习</p>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>想要搭建一个依托github的个人主页，或者说网站，首先需要了解</p>
+<ul>
+<li>linux的常用操作</li>
+<li>基础的shell和编辑器知识</li>
+<li>git的知识</li>
+</ul>
+<p>首先来说github个人主页是什么，根据我的理解，似乎就是把一种特定的仓库和路径下的文件，由github帮你转成一个网站，这个网站好像不能从后台获取数据再处理，也就是静态的。不过用于展示一些信息也够了。Llinux是必须要会的，非要说不用，也可以，主要是linux自带bash，也就是Bourne again shell，是一种shell命令行工具，shell就是让用户可以调用系统内核的指令系统，也就是说，是计算机的一种操作方式，bash就是这个操作界面。</p>
+<p>很多年前我跟着一个教程，在windows上面搞，稀里糊涂的下载了gitbash，还学着别人在指定文件夹使用“在此处打开Gitbash”，还以为位置错了就不行，小心翼翼，也不明不白。现在我学完了linux和shell的基本知识才明白怎么回事，就算是使用gitbash也不慌了。所以linux和shell还是需要会的。</p>
+<p>其次是git系统，因为要搭建github主页，实际上还是对一个仓库进行操作，包括后面使用的一个可以套用主题的工具hexo，也是跟git的操作逻辑非常相似，熟悉git操作可以保证不会晕，能知道自己每一步是什么含义。</p>
+<p>所以如果后人如果想根据本教程学习，请务必保证自己熟悉这些前置知识，否则后面会很迷惑。此外，<strong>本教程使用<code>Ubuntu</code>系统的虚拟机来操作</strong>。</p>
+<h2 id="使用github个人主页的方法"><a href="#使用github个人主页的方法" class="headerlink" title="使用github个人主页的方法"></a>使用github个人主页的方法</h2><p>官方主页的地址就在 <code>username.github.io</code>这个位置，我的理解是，他是自动把你的名为<code>username.github.io</code>的仓库转换成网站，比如本站（如果后续文章没有迁移的话）位置就在<code>https://leogittarius.github.io/</code>，我的github用户名就是Leogittarius，对应名仓储名就是<code>Leogittarius.github.io</code>。</p>
+<p>想使用个人主页，当然可以自己搭建，不过这样太复杂了，非常折腾，有个简单的办法，就是看到别人好看的个人主页，找到他的仓库，然后fork一下，就可以复制成自己的仓库了，把他命名为<code>username.github.io</code>的格式就好了。不过这样的坏处就是自定义程度稍差一点。本教程是使用了一个叫做<code>Hexo</code>的工具，里面有几百个主题，每个主题都有极高的自定义范围。</p>
+<p>我是在Linux虚拟机里面搭建的，在虚拟机里面搭建网站，最大的问题是，一般虚拟机的性能都很弱，不过对于个人主页没有关系，因为我们是搭建在github上面的，用的github服务器，本地的hexo只负责把文件上传到github里。</p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>Hexo是一个框架，或者说工具，可以使用基于hexo 的诸多主题，首先要安装Hexo，我们才能用里面的主题。然后hexo项目本质上就是一个文件夹，然后把这些文件push到github上，主题配置和文章等都可以上传，不能上传的就是hexo需要的一些环境。不过这些环境也可以比较快的安装就是了，所以在虚拟机里面使用hexo没什么不妥。</p>
+<h3 id="安装环境与Hexo"><a href="#安装环境与Hexo" class="headerlink" title="安装环境与Hexo"></a>安装环境与Hexo</h3><p>Hexo需要一些环境，我们需要安装。首先关于环境这部分，我不是非常明确，似乎这个环境还有分版本，所以最好使用一个工具来管理，具体来说是首先安装<code>curl</code>，它是一个命令行工具，用来向网络发送请求并下载数据，但他不是默认安装的，如果以前没安装过，可能需要手动安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install curl -y</span><br></pre></td></tr></table></figure>
+
+<p>然后，使用<code>curl</code>安装<code>nvm</code>，全称Node Version Manager，也就是<code>Node</code>的版本管理器。而<code>Node</code>就是Hexo的环境了。因为我们可能遇到需要多个Node版本切换的情况，所以用nvm安装Node是更规范的操作。我们首先安装nvm，随后重新加载一下bash配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>最后，使用nvm安装LTS（长期维护）版本的Node，这也是Hexo官方推荐的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
+
+<p>最后，测试一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p>如果有版本号，就说明安装成功了。至此终于安装完成环境部分了，接下来开始安装Hexo。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装完以后查看版本号看看是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Hexo站点"><a href="#创建Hexo站点" class="headerlink" title="创建Hexo站点"></a>创建Hexo站点</h3><p>一个Hexo项目本质上就是一个文件夹，他的逻辑和Git也很像，只要在一个目录下初始化，就相当于让Hexo接管这个文件夹了，和Git一样的逻辑。我们新建一个文件夹，比如叫myblog，然后在里面使用hexo命令，初始化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> myblog</span><br><span class="line"><span class="built_in">cd</span> myblog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>最后的<code>hexo init</code>命令会在这个文件夹里面创建一系列文件和文件夹，不过我们依然需要安装一下需要的依赖，再在此目录下安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>这样，就完成创建站点了。</p>
+<h3 id="测试Hexo站点"><a href="#测试Hexo站点" class="headerlink" title="测试Hexo站点"></a>测试Hexo站点</h3><p>如果已经安装完成了，可以使用hexo打开服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>然后在浏览器里打开<code>http://localhost:4000</code>就可以看到一个默认的hexo主题了，将会是一个欢迎界面，这个hexo server也可以简写成<code>hexo s</code>。</p>
+<h3 id="安装Hexo主题"><a href="#安装Hexo主题" class="headerlink" title="安装Hexo主题"></a>安装Hexo主题</h3><p>安装并且可以启动Hexo站点以后，就可以考虑选取一个主题了。选取主题本质上就是看到有哪个主题，找到他的github仓库，然后把代码克隆下来就好了，最后在配置文件里声明使用了该主题，就可以了。我现在使用的这款主题叫做Butterfly，就以它为案例。首先，由于我们安装好的hexo项目文件里面，肯定会有一个<code>themes</code>文件夹，这个我们直接cd到里面，也就是在<code>myblog/themes/</code>下，使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/jerryc127/hexo-theme-butterfly themes/butterfly</span><br></pre></td></tr></table></figure>
+
+<p>这样就能把这个主题项目从github上克隆下来。<strong>不过请务必保证已经安装了<code>git</code></strong>。之后，我们打开这个<code>theme</code>文件夹，就可以看到，我们克隆下载了一个文件夹，叫<code>hexo-theme-butterfly</code>。当然，不同的主题下载下来肯定是不同的。</p>
+<p>我们需要复制一下这个名字，然后在配置里面声明使用这个主题就行了。同样是在项目根目录<code>myblog/</code>下面，找到<code>_config.yml</code>文件夹，找到最后有个<code>theme: xxxx</code>，改成<code>themes: hexo-theme-butterfly</code>就行了。</p>
+<p>如何修改配置文件呢？一个办法是使用<code>VS Code</code>，首先需要安装好VS Code，这里不再重复，安装完以后，直接在<code>myblog/</code>目录下输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<p>来在这里打开code就可以了，就可以看到myblog&#x2F;下所有的文件了，当然也包括配置文件。如果不想使用VS Code来编辑，我想使用vim或者nano应该也是可以的。</p>
+<p>可能对于有的主题到这里就结束了，我们可以<strong>在项目主目录<code>myblog/</code>下使用</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>这几套命令来生成本地网页看看效果，如果可以，那么后面这部分就可以跳过了，如果输出<code>extends includes/layout.pug block content include ./includes/mixins/indexPostUI.pug +indexPostUI</code>，是因为有些主题使用<code>Pug 模板引擎</code>，而不是所有 Hexo 默认支持这个东西， 如果 Hexo 找不到 Pug 渲染器，就会把 <code>.pug</code> 当普通文本输出，所以我们还需要手动安装一下这个Pug渲染器，也很简单，输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/myblog</span><br><span class="line">npm install hexo-renderer-pug --save</span><br></pre></td></tr></table></figure>
+
+<p>就可以了，然后我们就可以用刚才提到的一系列hexo命令了。需要先说明这些命令是干什么的：</p>
+<blockquote>
+<p>hexo clean：清楚当前生成的文件<br>hexo g：生成文件<br>hexo s：开启本地服务，可以在<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 预览</p>
+</blockquote>
+<p>这三个命令将会非常常用。</p>
+<h3 id="部署（同步至github仓库）"><a href="#部署（同步至github仓库）" class="headerlink" title="部署（同步至github仓库）"></a>部署（同步至github仓库）</h3><p>首先，关于Hexo 的基本设置都在<code>_config.yml</code>文件里面，我们可以在里面做许多设置，这部分可以自行探索，但是关于配置文件末尾的部分，是本节的重点，此文件最后一部分可能是</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line"><span class="attr">repo:</span> <span class="string">git@github.com:Leogittarius/Leogittarius.github.io.git</span></span><br><span class="line"><span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+
+<p>需要在这里做好配置，如果没有，就自己添加上这几行。我这里是已经配置好的状态了。这里的<code>repo</code>指的就是我们需要用于同步的个人仓库的git地址。<strong>这个branch这里要注意，以前的教程可能是master，后来因为一些傻逼原因改成了main，当年就踩了坑，现在据说默认是改成main了</strong>。后来学习者务必注意。然后，我们本地使用<code>hexo s</code>查看无误后，就可以使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>把本地文件部署(deploy)上去，这个部署就是同步到github的仓库的意思，然后github pages就可以根据内容显示网页内容了。他这个hexo d本质上就是<code>git push --force</code>。所以，<strong>要是想部署网页，就必须提前配置好SSH秘钥等等步骤</strong>，这个步骤我们在学习Git的时候一定已经涉及过了。</p>
+<p>我这后面还遇到了一个坑，我几年前就用过hexo配置主题，后来不知道为什么，主题失效了，我每次打开个人主页，就会跳到主题失效的页面，然而主题项目本身还是正常的，可能是因为一些原因，我需要重新配置一下主题。不过当时我完全没有git、linux等的背景知识，所以一切都是稀里糊涂的，看到这一堆就望而生畏。问题是，这个个人主页仓库就这样放置着，后来给我留了个大坑，我当时使用<code>hexo d</code>部署的时候，就发现再打开网页的时候，还是弹出这个主题失效的页面，我尝试着跟着GPT的指令处理，可是到最后也没清楚怎么回事，我后来不得不采用最彻底的办法，即直接把仓库删掉，然后重新再建一个。<strong>这个问题至今对我悬而未决</strong>。</p>
+<p>不过至少，至少已经得知可以删仓库来处理了。后来我让GPT把前面的部分生成一篇技术备忘录，正好来当第一篇测试文章，正好就有前面的第一篇文章了。</p>
+<h2 id="文章发布"><a href="#文章发布" class="headerlink" title="文章发布"></a>文章发布</h2><p>解决了发布的问题，我们就可以考虑怎么写文章了，首先我们写文章是使用md格式，当然，包括本文章，也是markdown写的。hexo可以把用markdown排版的文章，渲染成主题中的样子，然后我们部署上去的时候，就可以在线上看到了。所以为了写作，我们首先需要一个markdown的模版。</p>
+<h3 id="正在使用的模版"><a href="#正在使用的模版" class="headerlink" title="正在使用的模版"></a>正在使用的模版</h3><p>我们正在使用的模版，亦即本文章使用的模版，如下所示，这里而的description是在外面点进来之前显示的部分。Markdown语法具体如何我们此处就不再重复了，想要实现什么效果，临时上网查就可以了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: （本文章的标题）</span><br><span class="line">date: （2025-11-24 21:00:00）</span><br><span class="line">tags:</span><br><span class="line">  - Hexo</span><br><span class="line">  - 博客搭建</span><br><span class="line">  - 排雷</span><br><span class="line">  - Github个人主页</span><br><span class="line">categories:</span><br><span class="line">  - 技术记录</span><br><span class="line">description: &quot;包含了涉及到的概念，以及踩过的坑。这次是手动输入的，不是AI生成的，更加详细一些。&quot;</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">之前已经发布了一篇测试帖子，是GPT根据搭建的过程总结的.....</span><br><span class="line"># 标题1</span><br><span class="line"></span><br><span class="line">## 标题1-1</span><br><span class="line"></span><br><span class="line">想要搭建一个依托github的个人主......</span><br></pre></td></tr></table></figure>
+
+<h3 id="虚拟机共享文件夹"><a href="#虚拟机共享文件夹" class="headerlink" title="虚拟机共享文件夹"></a>虚拟机共享文件夹</h3><p>由于我们是使用虚拟机来进行发布的，而虚拟机里面编辑文章比较麻烦，那个输入法非常难用，似乎有的时候两个系统可能共享剪切板，但有的时候好像又不行，我目前还没有仔细研究。但不管怎么说，剪切板能处理的文件比较有限。我们可以搞一个共享文件夹，对于我们使用的<code>VMware</code>软件，首先需要将虚拟机关机，然后在该虚拟机的设置中，找到共享文件夹，选择提前在主系统创建好的文件夹，选择<code>总是共享</code>。</p>
+<p>然后，在虚拟机终端里面，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install -y open-vm-tools open-vm-tools-desktop</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>这三行命令是安装<code>VMware Tools</code>，有了它才能用这个这个共享文件夹。</p>
+<p>但是这样还没完，很多教程到这里就没了，而且这些教程说可以到<code>/mnt/hgfs/</code>目录下面找到共享的文件夹，但是似乎相当多的人和我遇到了同样的问题，那就是这里没有共享文件夹，或者干脆没有<code>/hgfs</code>文件夹。这是因为没有<code>挂载</code>，按照gpt的解释，是指，把一个“外来的文件系统”，接到当前系统的某个目录上。总之，这个问题很可能是因为没有挂载，就需要手动挂载，首先，你需要<strong>手动</strong>创建<code>/mnt/hgfs/</code>目录，然后输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other</span><br></pre></td></tr></table></figure>
+
+<p>或者输入这个也可以：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other</span><br></pre></td></tr></table></figure>
+
+<p>这两个意思差不多，据gpt说是一个工具的不同使用方法。意思就是把其他系统的文件挂载到<code>/mnt/hgfs/</code>目录下，并且允许其他用户访问。用mount的那个更正规一些，似乎。</p>
+<p>这样，应该就可以在虚拟机里面看到挂载的文件夹了，两个系统都可以对里面的文件进行修改了。不过这个命令只能本次使用，虚拟机关机以后，就又不能共享了。如果要是想自动允许挂载，学过shell的应该清楚，就需要把他存到开机自检的配置里面，比如存到<code>/etc/fstab</code>里面，找到这个文件，启用编辑，在最后面加上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.host:/  /mnt/hgfs  fuse.vmhgfs-fuse  allow_other,defaults  0  0</span><br></pre></td></tr></table></figure>
+
+<p><strong>不过我没有实操过这个命令</strong>，因为可以在主系统上多编辑几个，然后在虚拟机里面打开这篇文章，再复制一下前面的命令就好了，我个人比较排斥修改开机文件。</p>
+<h3 id="文章发布命令"><a href="#文章发布命令" class="headerlink" title="文章发布命令"></a>文章发布命令</h3><p>发不文章就十分简单了，首先我们要在<code>myblog/source/_post/</code>目录下面新建一个<code>.md</code>文档，按照模版编辑完保存就可以了，然后在<code>myblog/</code>目录输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>就可以了。其中的hexo s是打开本地服务器用于预览的，如果认为不需要预览，可以不执行。至此，本教程结束。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://leogittarius.github.io">Lee</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://leogittarius.github.io/2025/12/17/%E5%85%B3%E4%BA%8E%E6%9C%AC%E6%AC%A1%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%BB%8F%E5%8E%86%EF%BC%8C%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E7%9A%84%E5%8A%9E%E6%B3%95/">https://leogittarius.github.io/2025/12/17/%E5%85%B3%E4%BA%8E%E6%9C%AC%E6%AC%A1%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%BB%8F%E5%8E%86%EF%BC%8C%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E7%9A%84%E5%8A%9E%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://leogittarius.github.io" target="_blank">叶牡丹国立图书馆</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a><a class="post-meta__tags" href="/tags/%E6%8E%92%E9%9B%B7/">排雷</a><a class="post-meta__tags" href="/tags/Github%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/">Github个人主页</a><a class="post-meta__tags" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">虚拟机</a><a class="post-meta__tags" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/">虚拟机共享文件夹</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/11/24/%E6%9D%A5%E4%B9%8B%E4%B8%8D%E6%98%93%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3/" title="我的 Hexo 博客搭建与排雷记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">我的 Hexo 博客搭建与排雷记录</div></div><div class="info-2"><div class="info-item-1">你妈的，终于搞定了！</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/11/24/%E6%9D%A5%E4%B9%8B%E4%B8%8D%E6%98%93%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3/" title="我的 Hexo 博客搭建与排雷记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-24</div><div class="info-item-2">我的 Hexo 博客搭建与排雷记录</div></div><div class="info-2"><div class="info-item-1">你妈的，终于搞定了！</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lee</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8github%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">使用github个人主页的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo"><span class="toc-number">3.</span> <span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E4%B8%8EHexo"><span class="toc-number">3.1.</span> <span class="toc-text">安装环境与Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAHexo%E7%AB%99%E7%82%B9"><span class="toc-number">3.2.</span> <span class="toc-text">创建Hexo站点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95Hexo%E7%AB%99%E7%82%B9"><span class="toc-number">3.3.</span> <span class="toc-text">测试Hexo站点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Hexo%E4%B8%BB%E9%A2%98"><span class="toc-number">3.4.</span> <span class="toc-text">安装Hexo主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%EF%BC%88%E5%90%8C%E6%AD%A5%E8%87%B3github%E4%BB%93%E5%BA%93%EF%BC%89"><span class="toc-number">3.5.</span> <span class="toc-text">部署（同步至github仓库）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83"><span class="toc-number">4.</span> <span class="toc-text">文章发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%9C%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E6%A8%A1%E7%89%88"><span class="toc-number">4.1.</span> <span class="toc-text">正在使用的模版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">4.2.</span> <span class="toc-text">虚拟机共享文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E5%91%BD%E4%BB%A4"><span class="toc-number">4.3.</span> <span class="toc-text">文章发布命令</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Lee</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3-b2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3-b2"></script><script src="/js/main.js?v=5.5.3-b2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

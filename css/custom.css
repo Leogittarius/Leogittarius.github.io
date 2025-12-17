@@ -1,0 +1,172 @@
+/*
+#web_bg, body, html {
+  background: linear-gradient(135deg, #2a2b5f 0%, #1c2650 100%) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  color: #000;
+}
+
+:root {
+  --card-bg: rgba(255, 255, 255, 0.80);
+  --card-radius: 18px;
+}
+
+#recent-posts > .recent-post-item,
+.layout_page > div:first-child:not(.recent-posts),
+.layout_post > #page,
+.layout_post > #post,
+.read-mode .layout_post > #post,
+#aside-content .card-widget,
+.post,
+.page,
+#archive,
+.post-content {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  border-radius: var(--card-radius) !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.16) !important;
+  color: #000 !important; 
+}
+
+.post-title, .page-title, h1, h2, h3, h4, h5 {
+  background: linear-gradient(90deg, #7a5fff, #5ab9ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+a, .post-meta a {
+  color: #4f63ff !important;
+}
+a:hover {
+  color: #7a5fff !important;
+}
+
+#nav {
+  background: rgba(255,255,255,0.28) !important;
+  backdrop-filter: blur(12px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+#footer {
+  background: rgba(255,255,255,0.25);
+  color: #000;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+}
+
+#footer::before {
+  background: rgba(255,255,255,0.15);
+}
+
+#footer #footer-wrap {
+  color: #333;
+}
+
+#footer #footer-wrap a {
+  color: #444;
+}*/
+
+/*
+#recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
+    background: var(--light_bg_color)
+}
+
+#aside-content .card-widget {
+    background: var(--light_bg_color)
+}
+
+#web_bg {
+    background: linear-gradient(90deg,rgba(247,149,51,.1),rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1))
+}
+#footer {
+    background: rgba(255,255,255,.15);
+    color: #000;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    backdrop-filter: saturate(100%) blur(5px)
+}
+
+#footer::before {
+    background: rgba(255,255,255,.15)
+}
+
+#footer #footer-wrap {
+    color: var(--font-color)
+}
+
+#footer #footer-wrap a {
+    color: var(--font-color)
+}
+*/
+
+/* === 全局背景 === */
+#web_bg, body, html {
+  background: linear-gradient(135deg, #2a2b5f 0%, #1c2650 100%) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  color: #000;
+}
+
+/* === 卡片半透明毛玻璃 === */
+:root {
+  --card-bg: rgba(255, 255, 255, 0.80);
+  --card-radius: 18px;
+}
+
+#recent-posts > .recent-post-item,
+.layout_page > div:first-child:not(.recent-posts),
+.layout_post > #page,
+.layout_post > #post,
+.read-mode .layout_post > #post,
+#aside-content .card-widget,
+.post,
+.page,
+#archive,
+.post-content {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  border-radius: var(--card-radius) !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.16) !important;
+  color: #000 !important;
+}
+
+/* === 标题和链接颜色 === */
+.post-title, .page-title, h1, h2, h3, h4, h5 {
+  background: linear-gradient(90deg, #7a5fff, #5ab9ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+a, .post-meta a { color: #4f63ff !important; }
+a:hover { color: #7a5fff !important; }
+
+/* === 顶部导航 === */
+#nav {
+  background: rgba(255,255,255,0.28) !important;
+  backdrop-filter: blur(12px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+/* === 页脚 === */
+#footer {
+  background: rgba(255,255,255,0.25);
+  color: #000;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+}
+#footer::before { background: rgba(255,255,255,0.15); }
+#footer #footer-wrap { color: #333; }
+#footer #footer-wrap a { color: #444; }
+
+/* === body-wrap透明 === */
+#body-wrap { background: transparent !important; }
